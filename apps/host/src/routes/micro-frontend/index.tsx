@@ -12,6 +12,6 @@ const Component = () => {
 
 export const route = new Route({
   getParentRoute: () => rootRoute,
-  path: "micro-frontend",
+  path: "/micro-frontend",
   component: Component
 });
