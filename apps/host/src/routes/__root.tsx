@@ -1,5 +1,5 @@
-import { QueryClient } from "@tanstack/react-query";
-import { rootRouteWithContext, Link, Outlet } from "@tanstack/react-router";
+import type { QueryClient } from "@tanstack/react-query";
+import { createRootRouteWithContext, Link, Outlet } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 
 const Component = () => {
@@ -30,7 +30,7 @@ const Component = () => {
   );
 };
 
-export const route = rootRouteWithContext<{
+export const route = createRootRouteWithContext<{
   queryClient: QueryClient;
 }>()({
   component: Component

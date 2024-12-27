@@ -1,4 +1,4 @@
-import { Outlet, Route } from "@tanstack/react-router";
+import { createRoute, Outlet } from "@tanstack/react-router";
 import { route as rootRoute } from "../__root";
 
 const Component = () => {
@@ -10,7 +10,7 @@ const Component = () => {
   );
 };
 
-export const route = new Route({
+export const route = createRoute({
   getParentRoute: () => rootRoute,
   path: "/micro-frontend",
   component: Component
