@@ -1,15 +1,19 @@
-import type { QueryClient } from "@tanstack/react-query";
-import { createRootRouteWithContext, Link, Outlet } from "@tanstack/react-router";
-import { TanStackRouterDevtools } from "@tanstack/router-devtools";
+import type { QueryClient } from '@tanstack/react-query';
+import {
+  Link,
+  Outlet,
+  createRootRouteWithContext,
+} from '@tanstack/react-router';
+import { TanStackRouterDevtools } from '@tanstack/router-devtools';
 
 const Component = () => {
   return (
     <>
-      <div style={{ display: "flex", gap: 5 }}>
+      <div style={{ display: 'flex', gap: 5 }}>
         <Link
           to="/"
           activeProps={{
-            className: "font-bold"
+            className: 'font-bold',
           }}
           activeOptions={{ exact: true }}
         >
@@ -17,7 +21,7 @@ const Component = () => {
         </Link>
         <Link
           to="/micro-frontend"
-          activeProps={{ className: "font-bold" }}
+          activeProps={{ className: 'font-bold' }}
           activeOptions={{ exact: true }}
         >
           RemoteApp
@@ -33,5 +37,5 @@ const Component = () => {
 export const route = createRootRouteWithContext<{
   queryClient: QueryClient;
 }>()({
-  component: Component
+  component: Component,
 });
