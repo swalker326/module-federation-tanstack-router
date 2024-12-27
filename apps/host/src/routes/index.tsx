@@ -1,5 +1,5 @@
-import { Route } from '@tanstack/react-router';
-import { route as rootRoute } from './__root';
+import { createRoute, Route } from "@tanstack/react-router";
+import { route as rootRoute } from "./__root";
 const Component = () => {
   return (
     <div className="p-2">
@@ -7,8 +7,8 @@ const Component = () => {
     </div>
   );
 };
-export const route = new Route({
+export const route = createRoute({
   getParentRoute: () => rootRoute,
-  path: '/',
-  component: Component,
+  path: "/",
+  component: Component
 });

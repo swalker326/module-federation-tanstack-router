@@ -1,9 +1,10 @@
 import { dependencies } from "./package.json";
 
 export const config = {
-  name: "host",
-  remotes: {
-    remote: "remote@http://localhost:3001/remoteEntry.js"
+  name: "remote",
+  filename: "remoteEntry.js",
+  exposes: {
+    "./App": "./src/App.tsx"
   },
   shared: {
     ...dependencies,
