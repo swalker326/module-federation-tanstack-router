@@ -1,13 +1,9 @@
-import { createRoute } from "@tanstack/react-router";
+import { createRoute, lazyRouteComponent } from "@tanstack/react-router";
 import { route as rootRoute } from "./__root";
-import MicroFrontend from "remote/App";
 
 export const Route = createRoute({
   getParentRoute: () => rootRoute,
+  preload: true,
   path: "/MicroFrontend",
-  component: RouteComponent
+  component: lazyRouteComponent(() => import("remote/App"))
 });
-
-function RouteComponent() {
-  return <MicroFrontend />;
-}
