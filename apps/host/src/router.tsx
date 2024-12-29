@@ -2,13 +2,9 @@ import { QueryClient } from "@tanstack/react-query";
 import { createRouter } from "@tanstack/react-router";
 import { route as indexRoute } from "./routes";
 import { route as rootRoute } from "./routes/__root";
-import { route as microfrontendRoute } from "./routes/micro-frontend";
-import { route as dyanmicRemote } from "./routes/micro-frontend/mirco-frontend";
+import { Route as Microfrontend } from "./routes/MicroFrontend";
 
-const routeTree = rootRoute.addChildren([
-  indexRoute,
-  microfrontendRoute.addChildren([dyanmicRemote])
-]);
+const routeTree = rootRoute.addChildren([indexRoute, Microfrontend]);
 
 export const queryClient = new QueryClient();
 

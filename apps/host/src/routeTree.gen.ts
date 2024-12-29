@@ -10,106 +10,85 @@
 
 // Import Routes
 
-import { Route as rootRoute } from './routes/__root';
-import { Route as IndexImport } from './routes/index';
-import { Route as MicroFrontendIndexImport } from './routes/micro-frontend/index';
-import { Route as MicroFrontendMircoFrontendImport } from './routes/micro-frontend/mirco-frontend';
+import { Route as rootRoute } from './routes/__root'
+import { Route as MicroFrontendImport } from './routes/MicroFrontend'
+import { Route as IndexImport } from './routes/index'
 
 // Create/Update Routes
+
+const MicroFrontendRoute = MicroFrontendImport.update({
+  id: '/MicroFrontend',
+  path: '/MicroFrontend',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRoute,
-} as any);
-
-const MicroFrontendIndexRoute = MicroFrontendIndexImport.update({
-  id: '/micro-frontend/',
-  path: '/micro-frontend/',
-  getParentRoute: () => rootRoute,
-} as any);
-
-const MicroFrontendMircoFrontendRoute = MicroFrontendMircoFrontendImport.update(
-  {
-    id: '/micro-frontend/mirco-frontend',
-    path: '/micro-frontend/mirco-frontend',
-    getParentRoute: () => rootRoute,
-  } as any,
-);
+} as any)
 
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
     '/': {
-      id: '/';
-      path: '/';
-      fullPath: '/';
-      preLoaderRoute: typeof IndexImport;
-      parentRoute: typeof rootRoute;
-    };
-    '/micro-frontend/mirco-frontend': {
-      id: '/micro-frontend/mirco-frontend';
-      path: '/micro-frontend/mirco-frontend';
-      fullPath: '/micro-frontend/mirco-frontend';
-      preLoaderRoute: typeof MicroFrontendMircoFrontendImport;
-      parentRoute: typeof rootRoute;
-    };
-    '/micro-frontend/': {
-      id: '/micro-frontend/';
-      path: '/micro-frontend';
-      fullPath: '/micro-frontend';
-      preLoaderRoute: typeof MicroFrontendIndexImport;
-      parentRoute: typeof rootRoute;
-    };
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/MicroFrontend': {
+      id: '/MicroFrontend'
+      path: '/MicroFrontend'
+      fullPath: '/MicroFrontend'
+      preLoaderRoute: typeof MicroFrontendImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
 // Create and export the route tree
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute;
-  '/micro-frontend/mirco-frontend': typeof MicroFrontendMircoFrontendRoute;
-  '/micro-frontend': typeof MicroFrontendIndexRoute;
+  '/': typeof IndexRoute
+  '/MicroFrontend': typeof MicroFrontendRoute
 }
 
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute;
-  '/micro-frontend/mirco-frontend': typeof MicroFrontendMircoFrontendRoute;
-  '/micro-frontend': typeof MicroFrontendIndexRoute;
+  '/': typeof IndexRoute
+  '/MicroFrontend': typeof MicroFrontendRoute
 }
 
 export interface FileRoutesById {
-  __root__: typeof rootRoute;
-  '/': typeof IndexRoute;
-  '/micro-frontend/mirco-frontend': typeof MicroFrontendMircoFrontendRoute;
-  '/micro-frontend/': typeof MicroFrontendIndexRoute;
+  __root__: typeof rootRoute
+  '/': typeof IndexRoute
+  '/MicroFrontend': typeof MicroFrontendRoute
 }
 
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath;
-  fullPaths: '/' | '/micro-frontend/mirco-frontend' | '/micro-frontend';
-  fileRoutesByTo: FileRoutesByTo;
-  to: '/' | '/micro-frontend/mirco-frontend' | '/micro-frontend';
-  id: '__root__' | '/' | '/micro-frontend/mirco-frontend' | '/micro-frontend/';
-  fileRoutesById: FileRoutesById;
+  fileRoutesByFullPath: FileRoutesByFullPath
+  fullPaths: '/' | '/MicroFrontend'
+  fileRoutesByTo: FileRoutesByTo
+  to: '/' | '/MicroFrontend'
+  id: '__root__' | '/' | '/MicroFrontend'
+  fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute;
-  MicroFrontendMircoFrontendRoute: typeof MicroFrontendMircoFrontendRoute;
-  MicroFrontendIndexRoute: typeof MicroFrontendIndexRoute;
+  IndexRoute: typeof IndexRoute
+  MicroFrontendRoute: typeof MicroFrontendRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  MicroFrontendMircoFrontendRoute: MicroFrontendMircoFrontendRoute,
-  MicroFrontendIndexRoute: MicroFrontendIndexRoute,
-};
+  MicroFrontendRoute: MicroFrontendRoute,
+}
 
 export const routeTree = rootRoute
   ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>();
+  ._addFileTypes<FileRouteTypes>()
 
 /* ROUTE_MANIFEST_START
 {
@@ -118,18 +97,14 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/micro-frontend/mirco-frontend",
-        "/micro-frontend/"
+        "/MicroFrontend"
       ]
     },
     "/": {
       "filePath": "index.tsx"
     },
-    "/micro-frontend/mirco-frontend": {
-      "filePath": "micro-frontend/mirco-frontend.tsx"
-    },
-    "/micro-frontend/": {
-      "filePath": "micro-frontend/index.tsx"
+    "/MicroFrontend": {
+      "filePath": "MicroFrontend.tsx"
     }
   }
 }

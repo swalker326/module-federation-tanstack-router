@@ -1,4 +1,4 @@
-import { createRoute, Route } from "@tanstack/react-router";
+import { createRoute } from "@tanstack/react-router";
 import { route as rootRoute } from "./__root";
 const Component = () => {
   return (

@@ -20,7 +20,7 @@ const Component = () => {
           Home
         </Link>
         <Link
-          to="/micro-frontend"
+          to="/MicroFrontend"
           activeProps={{ className: 'font-bold' }}
           activeOptions={{ exact: true }}
         >
